@@ -1,6 +1,5 @@
 package recommended
 
-import "github.com/jinzhu/gorm"
 
 type RecommendedSymbols struct {
 	Finance struct {
@@ -12,7 +11,5 @@ type RecommendedSymbols struct {
 }
 
 type Recommended struct {
-	gorm.Model
-
 	Symbol string `json:"symbol"`
 }
