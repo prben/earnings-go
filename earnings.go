@@ -4,6 +4,7 @@ import (
 	"github.com/prben/earnings-go/pkg/balancesheet"
 	"github.com/prben/earnings-go/pkg/cashflow"
 	"github.com/prben/earnings-go/pkg/income"
+	"github.com/prben/earnings-go/pkg/recommended"
 )
 
 // Earnings var
@@ -11,6 +12,7 @@ type Earnings struct {
 	Cashflow     *cashflow.Cashflow
 	BalanceSheet *balancesheet.BalanceSheet
 	Income       *income.Income
+	Recommended  []recommended.Recommended
 }
 
 // NewEarnings fetch
@@ -30,6 +32,11 @@ func NewEarnings(symbol string) (*Earnings, error) {
 	}
 
 	e.Income, err = income.NewIncomeSheet(symbol)
+	if err != nil {
+		return nil, err
+	}
+
+	e.Recommended, err = recommended.NewRecommended(symbol)
 	if err != nil {
 		return nil, err
 	}
